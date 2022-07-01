@@ -86,6 +86,7 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
     // 阻止冒泡
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
+    console.log("emoji点击")
     setEmojiShow(!emojiShow);
   };
 
@@ -273,7 +274,8 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
           </div>
 
           <div className={'flex-shrink-0'}>
-            <Btn info={'发送'} size={'less'} ripple onClick={onSendClick} className={'mt-0.5'}/>
+            <Btn info={'发送'} scheme={"custom"} ripple onClick={onSendClick}
+                 className={'mt-0.5 py-1 px-1 text-xs bg-blue-500 hover:bg-blue-700 rounded text-white'}/>
           </div>
         </div>
       </Spin>

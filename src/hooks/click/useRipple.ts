@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import {RefObject, useEffect} from 'react';
 
 const ANIMATION_LENGTH = 700;
 const RIPPLE_SIZE = 100;
@@ -39,7 +39,7 @@ const createRipple = (element: HTMLElement, options?: RippleOptions) => (e?: Rip
   const clientX = e?.clientX || defaultEvent.clientX;
   const clientY = e?.clientY || defaultEvent.clientY;
 
-  const { height, width, top, left } = element.getBoundingClientRect();
+  const {height, width, top, left} = element.getBoundingClientRect();
   const x = clientX - left;
   const y = clientY - top;
 
@@ -64,17 +64,30 @@ const createRipple = (element: HTMLElement, options?: RippleOptions) => (e?: Rip
 
   element.appendChild(span);
 
+  let isRemove = false
   span.addEventListener('animationend', () => {
-    element.removeChild(span);
+    !isRemove && element.removeChild(span);
+    isRemove = true
   });
+
+  // 再定时 即时没有动画也移除
+  setTimeout(() => {
+    !isRemove && element.removeChild(span)
+    isRemove = true
+  }, 1500)
+
+
 };
 
 const useRipple = (ref?: RefObject<HTMLElement>, options?: RippleOptions): any => {
   useEffect(() => {
-    if (options?.disabled || !ref?.current) {
-      return;
-    }
 
+    if (!ref?.current) {
+      return
+    }
+    if (options?.disabled) {
+      return
+    }
     const element = ref.current;
     const elementPosition = getComputedStyle(element).getPropertyValue('position');
 

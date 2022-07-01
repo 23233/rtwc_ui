@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import classNames from 'classnames';
 
 const spinSize = {
@@ -23,16 +23,16 @@ export interface SpinAttr {
 }
 
 const Spin: React.FC<SpinAttr> = ({
-  loading,
-  size = 'normal',
-  zIndex = 50,
-  customSize,
-  customColor,
-  customBgColor,
-  block = false,
-  children,
-  className = '',
-}) => {
+                                    loading,
+                                    size = 'normal',
+                                    zIndex = 50,
+                                    customSize,
+                                    customColor,
+                                    customBgColor,
+                                    block = false,
+                                    children,
+                                    className = '',
+                                  }) => {
   const customStyle = useMemo(() => {
     let s = {} as any;
     if (customSize) {
@@ -52,30 +52,33 @@ const Spin: React.FC<SpinAttr> = ({
   const renderSpin = useMemo(() => {
     if (loading) {
       return (
-        <div
-          className="absolute left-0 top-0 h-full w-full flex justify-center items-center"
-          style={{ zIndex: zIndex }}
-        >
+        <React.Fragment>
           <div
-            className={'relative block rounded-full'}
-            style={{
-              width: 'var(--spin-size)',
-              height: 'var(--spin-size)',
-              backgroundColor: 'var(--spin-bg-color)',
-            }}
+            className="absolute left-0 top-0 h-full w-full flex justify-center items-center"
+            style={{zIndex: zIndex}}
           >
             <div
-              className={'block box-border w-0 h-0 border-solid'}
+              className={'relative block rounded-full'}
               style={{
-                margin: 'calc(var(--spin-size) * 0.1406)',
-                borderWidth: 'calc(var(--spin-size) / 2.8125)',
-                borderRadius: '50%',
-                borderColor: 'var(--spin-color) transparent var(--spin-color) transparent',
-                animation: 'spin-loading 1.2s infinite',
+                width: 'var(--spin-size)',
+                height: 'var(--spin-size)',
+                backgroundColor: 'var(--spin-bg-color)',
               }}
-            />
+            >
+              <div
+                className={'block box-border w-0 h-0 border-solid'}
+                style={{
+                  margin: 'calc(var(--spin-size) * 0.1406)',
+                  borderWidth: 'calc(var(--spin-size) / 2.8125)',
+                  borderRadius: '50%',
+                  borderColor: 'var(--spin-color) transparent var(--spin-color) transparent',
+                  animation: 'spin-loading 1.2s infinite',
+                }}
+              />
+            </div>
           </div>
-        </div>
+          <div className={'absolute left-0 top-0 w-full h-full'} style={{zIndex: 49}}/>
+        </React.Fragment>
       );
     }
   }, [loading]);
@@ -99,7 +102,6 @@ const Spin: React.FC<SpinAttr> = ({
       >
         {children}
         {renderSpin}
-        <div className={'absolute left-0 top-0 w-full h-full'} style={{ zIndex: 49 }} />
       </div>
     </React.Fragment>
   );
