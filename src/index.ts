@@ -75,7 +75,15 @@ export type {
 export {default as CommentPreCombView} from './comment/view/normal/preComb';
 export type {commentPreCombUserParams, commentPreCombParams} from './comment/view/normal/preComb';
 
+export {default as AutoCardAlignGridView} from './cards/index';
+export type {autoCardItem, autoCardAlignGridViewParams} from './cards/index';
+
 export {default as CommentReplyView} from './comment/view/reply';
 export type {commentReplyParams, commentReplyUserParams} from './comment/view/reply';
+
+// 显示或编辑
+export {default as ShowAndEditInput} from "./data/showAndEdit/input/index"
+export type {showAndEditBase, showAndEditInputParams} from "./data/showAndEdit/input/index"
+
 
 export {loadInitStyle} from "./tools/loadInitStyle"

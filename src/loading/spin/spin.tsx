@@ -87,7 +87,7 @@ const Spin: React.FC<SpinAttr> = ({
     <React.Fragment>
       <div
         className={classNames(
-          'relative overflow-hidden',
+          'relative ',
           loading ? `spinWarp ${size}` : '',
           block ? 'block' : 'inline-block',
           className,
