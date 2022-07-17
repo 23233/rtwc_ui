@@ -36,7 +36,7 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
   const renderItem = useCallback((d: autoCardItem, big?: boolean) => {
 
     const bgStyle = (d?.preview?.origin || d?.preview?.thumbnail) ? {
-      background: `url("${d?.preview?.thumbnail}")no-repeat`,
+      background: `url("${d?.preview?.thumbnail || d?.preview?.origin}")no-repeat`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     } : {}
