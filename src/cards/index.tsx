@@ -17,6 +17,8 @@ export interface autoCardAlignGridViewParams {
   className?: string
   itemNormalCls?: string
   itemBigCls?: string
+  titleCls?: string
+  descCls?: string
   onClick?: (item: autoCardItem) => void
 }
 
@@ -26,6 +28,8 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
                                                                         className = "px-2 my-1",
                                                                         itemNormalCls = "h-24 md:h-32 lg:h-36 xl:h-40",
                                                                         itemBigCls = "h-28 md:h-36 lg:h-40 xl:h-44",
+                                                                        titleCls = "text-2xl truncate font-bold",
+                                                                        descCls = "text-sm text-opacity-90 truncate mt-2",
                                                                         onClick,
                                                                       }) => {
 
@@ -48,10 +52,10 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
             'text-black text-center bg-white bg-opacity-20 p-2 rounded  hover:scale-105 hover:bg-opacity-80 transition-all '
           }
         >
-          <p className={"text-2xl truncate font-bold"}>{d?.title}</p>
+          <p className={classNames(titleCls)}>{d?.title}</p>
           {
             !!d?.desc &&
-            <p className={"text-sm text-opacity-90 truncate mt-2"}>{d?.desc}</p>
+            <p className={classNames(descCls)}>{d?.desc}</p>
           }
 
         </div>

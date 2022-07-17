@@ -29,6 +29,11 @@ const index: React.FC = () => (
         <Icons type={'moreandroid'} title={'新增的新图标'} />
       </div>
     </div>
+
+    <div>
+      <a href="https://at.alicdn.com/t/font_2506983_bxxb13sody8.js">默认图标库地址</a>
+    </div>
+
   </div>
 );
 
