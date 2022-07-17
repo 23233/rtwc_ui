@@ -16,15 +16,15 @@ const index = (): any => {
   }
 
   const data = [
-    baseItem("第一个", "有描述"),
-    baseItem("第二个", "无描述"),
-    baseItem("第三个", "有描述"),
-    baseItem("第4个", "就这吧"),
-    baseItem("第5个", ""),
-    baseItem("第6个", ""),
-    baseItem("第7个", ""),
-    baseItem("第8个", ""),
-    baseItem("第9个", ""),
+    baseItem("第一个123123", "有描述有描述有描述有描述有描述有描述有描述"),
+    baseItem("第二个123123", "无描述无描述无描述"),
+    baseItem("第三个123123", "有描述"),
+    baseItem("第4个123123", "就这吧"),
+    baseItem("第5个123123", ""),
+    baseItem("第6个123123", ""),
+    baseItem("第7个123123", ""),
+    baseItem("第8个123123", ""),
+    baseItem("第9个123123", ""),
   ] as Array<autoCardItem>
 
   return (
