@@ -51,7 +51,7 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
             'w-full  text-black text-center bg-white bg-opacity-20 p-1 md:p-2 rounded  hover:scale-105 hover:bg-opacity-80 transition-all '
           }
         >
-          <div className={""}>
+          <div>
             <p className={classNames(titleCls)}>{d?.title}</p>
             {
               !!d?.desc &&

@@ -87,3 +87,4 @@ export type {showAndEditBase, showAndEditInputParams} from "./data/showAndEdit/i
 
 
 export {loadInitStyle} from "./tools/loadInitStyle"
+export {snakeCase} from "./tools/index"
