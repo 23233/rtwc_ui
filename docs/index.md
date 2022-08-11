@@ -8,3 +8,5 @@ hero:
 
 ---
 
+
+<code src="./entry.tsx" />

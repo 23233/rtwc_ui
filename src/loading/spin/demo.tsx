@@ -18,8 +18,6 @@ const index: React.FC = () => {
   return (
     <div className={'m-2'}>
 
-      <Btn info={"加载运动样式"} onClick={() => loadInitStyle()}/>
-
       <h3 className={'mb-2'}>可以设置size</h3>
 
       <div>
