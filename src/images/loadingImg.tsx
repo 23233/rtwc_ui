@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
+import React, {CSSProperties, useCallback, useEffect, useMemo, useState} from 'react';
 
 export interface LmgProps {
   src: string;
@@ -16,18 +16,18 @@ export interface LmgProps {
 
 // loading img 简写Lmg
 const Lmg: React.FC<LmgProps> = ({
-  loadingMinSize = 60,
-  src,
-  alt,
-  style = {},
-  onClick,
-  className,
-  useBk = false,
-  bgPosition = 'center center',
-  bgSize = 'cover',
-  loadingClassName = 'w-full h-full flex items-center justify-center',
-  ...props
-}) => {
+                                   loadingMinSize = 60,
+                                   src,
+                                   alt,
+                                   style = {},
+                                   onClick,
+                                   className,
+                                   useBk = false,
+                                   bgPosition = 'center center',
+                                   bgSize = 'cover',
+                                   loadingClassName = 'w-full h-full flex items-center justify-center',
+                                   ...props
+                                 }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [mount, setMount] = useState<boolean>(false);
 
@@ -58,7 +58,7 @@ const Lmg: React.FC<LmgProps> = ({
     onClick && onClick(e);
   };
 
-  const renderItem = useMemo(() => {
+  const renderItem = useCallback(() => {
     if (success) {
       if (useBk) {
         return (
@@ -88,7 +88,7 @@ const Lmg: React.FC<LmgProps> = ({
       );
     }
     return (
-      <div className={loadingClassName} style={{ minHeight: loadingMinSize }}>
+      <div className={loadingClassName} style={{minHeight: loadingMinSize}}>
         <svg className="animate-spin h-5 w-5 text-gray-200" viewBox="0 0 24 24">
           <circle
             className="opacity-20"
@@ -106,11 +106,13 @@ const Lmg: React.FC<LmgProps> = ({
         </svg>
       </div>
     );
-  }, [props]);
+  }, [src, className, style, alt])
 
   return (
     <React.Fragment>
-      {!mount ? <img src={src} alt={alt} title={alt} className={'hidden'} /> : renderItem}
+      {
+        !mount ? <img src={src} alt={alt} title={alt} className={'hidden'}/> : renderItem()
+      }
     </React.Fragment>
   );
 };
