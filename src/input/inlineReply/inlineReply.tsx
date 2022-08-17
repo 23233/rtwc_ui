@@ -23,6 +23,8 @@ export interface inlineReplyInputParams {
   multiple?: boolean;
   /** 存在时才会显示图像上传图标 */
   onFileUpload?: (file: File[]) => Promise<fileUploadResp[]>;
+  /** 存在会显示图像上传图标 并会替换默认选择图片行为 remain 为剩余可上传数量 */
+  onFileClick?: (remain: number) => File[];
   /** 图片上传出错 */
   onFileFail?: (files: File[], err: Error) => void;
   /** 当图片删除 */
@@ -50,6 +52,7 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
                                                               maxValueSize = 255,
                                                               onImgClick,
                                                               onFileUpload,
+                                                              onFileClick,
                                                               onFileFail,
                                                               onFileRemove,
                                                               avatar,
@@ -94,6 +97,14 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
   const onUploadSelect = async (e: any) => {
     const files = e.target.files;
     console.log('select file', files);
+    return await onFilesUploadCheck(files)
+  };
+
+  // 进行验证并上传
+  const onFilesUploadCheck = async (files: File[]) => {
+    if (!files?.length) {
+      return
+    }
     if (fileList?.length + files.length > fileLimit) {
       onFileFail && onFileFail(files, new Error(`图片上传超出${fileLimit}张限制,请重选`))
       return;
@@ -109,8 +120,7 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
         setLoading(false);
       }
     }
-  };
-
+  }
 
   const onImgRemove = async (item: fileUploadResp) => {
 
@@ -152,11 +162,21 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
     onSend(p);
   };
 
+  const onFileUploadClick = async () => {
+    if (onFileClick) {
+      const files = onFileClick(fileLimit - fileList.length)
+      await onFilesUploadCheck(files)
+      return
+    }
+    upload.current?.click()
+  }
+
+
   return (
     <div>
       {!!replyUserName && (
         <div
-          className={`flex items-center flex-nowrap overflow-hidden gap-1 p-1 rounded ${classNames(
+          className={`flex items-center flex-nowrap overflow-hidden gap-1 p-1 rounded mb-1 ${classNames(
             replyCls,
           )}`}
         >
@@ -242,7 +262,7 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
                 </div>
               )}
             </div>
-            {!!onFileUpload && (
+            {!!onFileUpload || !!onFileClick && (
               <div title={'新增图片'}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +270,7 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
                   width="30"
                   height="30"
                   className={'cursor-pointer select-none transition-all hover:scale-110'}
-                  onClick={() => upload.current?.click()}
+                  onClick={onFileUploadClick}
                 >
                   <path
                     fill="#F57C00"
@@ -261,14 +281,17 @@ const InlineReplyInput: React.FC<inlineReplyInputParams> = ({
                   <path fill="#BF360C" d="m31 22-8 10h16z"/>
                 </svg>
 
-                <input
-                  type="file"
-                  accept={'image/*'}
-                  multiple={multiple}
-                  style={{display: 'none'}}
-                  ref={upload}
-                  onChange={onUploadSelect}
-                />
+                {
+                  !onFileClick && <input
+                    type="file"
+                    accept={'image/*'}
+                    multiple={multiple}
+                    style={{display: 'none'}}
+                    ref={upload}
+                    onChange={onUploadSelect}
+                  />
+                }
+
               </div>
             )}
           </div>

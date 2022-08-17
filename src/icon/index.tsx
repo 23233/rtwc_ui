@@ -1,6 +1,6 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, {CSSProperties, useEffect, useRef, useState} from 'react';
 import classnames from 'classnames';
-import { useRipple } from '@rtwc/ui';
+import {useRipple} from '@rtwc/ui';
 
 export interface IconAttr {
   type: string;
@@ -40,26 +40,27 @@ export const AddIconUrl = (newUrl: string): void => {
 };
 
 const Icon: React.FC<IconAttr> = ({
-  type,
-  title,
-  prefix = 'icon',
-  style,
-  size = 14,
-  className,
-  onClick,
-  ripple = false,
-}) => {
+                                    type,
+                                    title,
+                                    prefix = 'icon',
+                                    style,
+                                    size = 14,
+                                    className,
+                                    onClick,
+                                    ripple = false,
+                                  }) => {
   const [init, setInit] = useState<boolean>();
   const refs = useRef<any>();
   useRipple(ripple ? refs : undefined);
 
   useEffect(() => {
     setInit(true);
+    // todo: iconfont cdn服务已经被停用了 随时不可用 需要换另外的方式使用icon了
     loadIconUrl('https://at.alicdn.com/t/font_2506983_bxxb13sody8.js');
   }, []);
 
   return (
-    <span style={{ fontSize: size }} ref={refs} onClick={onClick} title={title}>
+    <span style={{fontSize: size}} ref={refs} onClick={onClick} title={title}>
       {init && (
         <svg
           className={classnames('custom-icon', className)}
@@ -73,7 +74,7 @@ const Icon: React.FC<IconAttr> = ({
             ...style,
           }}
         >
-          <use xlinkHref={`#${prefix}-${type}`} />
+          <use xlinkHref={`#${prefix}-${type}`}/>
         </svg>
       )}
     </span>

@@ -11,7 +11,7 @@ const index = (): any => {
 
   return (
     <div>
-      <SimpleTitle text={'包含链接'} />
+      <SimpleTitle text={'包含链接'}  className={"my-2"} />
       <CommentView
         userAttr={user}
         links={[
@@ -33,9 +33,9 @@ const index = (): any => {
           },
         ]}
       />
-      <SimpleTitle text={'加载中'} />
+      <SimpleTitle text={'加载中'}  className={"my-2"} />
       <CommentView userAttr={user} value={'zpiqodeSDK佛普外科'} loading />
-      <SimpleTitle text={'纯文字'} />
+      <SimpleTitle text={'纯文字'}  className={"my-2"} />
       <CommentView
         userAttr={user}
         value={
@@ -43,7 +43,7 @@ const index = (): any => {
         }
       />
 
-      <SimpleTitle text={'纯图片'} />
+      <SimpleTitle text={'纯图片'}  className={"my-2"} />
       <CommentView
         userAttr={user}
         imgs={[
@@ -62,7 +62,7 @@ const index = (): any => {
         ]}
       />
 
-      <SimpleTitle text={'文字图片混合'} />
+      <SimpleTitle text={'文字图片混合'} className={"my-2"}  />
 
       <CommentView
         userAttr={user}
@@ -87,7 +87,7 @@ const index = (): any => {
         update_time={'2022-6-27 21:38:35'}
       />
 
-      <SimpleTitle text={'自定义传入各类node'} />
+      <SimpleTitle text={'自定义传入各类node'} className={"my-2"}  />
       <CommentView
         userAttr={{
           ...user,
@@ -111,7 +111,7 @@ const index = (): any => {
         }
       />
 
-      <SimpleTitle text={'用户头像点击事件跳转 用户昵称a标签跳转'} />
+      <SimpleTitle text={'用户头像点击事件跳转 用户昵称a标签跳转'} className={"my-2"}  />
       <CommentView
         userAttr={{
           ...user,
@@ -120,7 +120,7 @@ const index = (): any => {
         value={'传入用户的href字段即可'}
       />
 
-      <SimpleTitle text={'显示各类操作'} />
+      <SimpleTitle text={'显示各类操作'} className={"my-2"}  />
 
       <CommentView
         userAttr={{ ...user, onUserClick: (f) => alert('用户' + f + '点击') }}
@@ -134,7 +134,7 @@ const index = (): any => {
         update_time={'2022-6-27 21:38:35'}
       />
 
-      <SimpleTitle text={'内嵌自己'} />
+      <SimpleTitle text={'内嵌自己'} className={"my-2"}  />
       <CommentView userAttr={user} value={'传入用户的href字段即可'}>
         <CommentView
           userAttr={{
@@ -145,7 +145,7 @@ const index = (): any => {
           value={'传入用户的href字段即可'}
         />
       </CommentView>
-      <SimpleTitle text={'内嵌复杂评论框'} />
+      <SimpleTitle text={'内嵌复杂评论框'} className={"my-2"}  />
       <CommentView userAttr={user} value={'传入用户的href字段即可'}>
         <UserCommentInput
           avatar={
@@ -154,13 +154,13 @@ const index = (): any => {
           onSend={(values) => console.log('回复成功', values)}
         />
       </CommentView>
-      <SimpleTitle text={'内嵌简单评论框'} />
+      <SimpleTitle text={'内嵌简单评论框'} className={"my-2"}  />
 
       <CommentView userAttr={user} value={'传入用户的href字段即可'}>
         <InlineReplyInput onSend={(values) => console.log('回复成功', values)} />
       </CommentView>
 
-      <SimpleTitle text={'预处理嵌入'} />
+      <SimpleTitle text={'预处理嵌入'} className={"my-2"}  />
 
       <CommentPreCombView
         userAttr={{
@@ -172,7 +172,7 @@ const index = (): any => {
         value={'sdjifjiwefjifewjiefw'}
       />
 
-      <SimpleTitle text={'预处理嵌入自己'} />
+      <SimpleTitle text={'预处理嵌入自己'} className={"my-2"} />
 
       <CommentPreCombView
         userAttr={{

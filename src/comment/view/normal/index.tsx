@@ -7,7 +7,8 @@ import {
 } from '@rtwc/ui';
 import dayjs from 'dayjs';
 import classNames from 'classnames';
-import {Btn, Lmg, Spin, UserSimpleView} from '@rtwc/ui';
+import {Btn, Spin, UserSimpleView} from '@rtwc/ui';
+import {DefaultUserLogoCls} from "../../../user/simple";
 
 export interface commentUserParams {
   /** 用户头像 */
@@ -60,7 +61,7 @@ const CommentView: React.FC<commentViewParams> = ({
                                                     update_time,
                                                     showDelete = false,
                                                     loading = false,
-                                                    userAttr = {},
+                                                    userAttr,
                                                     onDelete,
                                                     onReport,
                                                     onLike,
@@ -74,6 +75,10 @@ const CommentView: React.FC<commentViewParams> = ({
     }
     return like;
   }, [like]);
+
+  const userLoginCls = useMemo(() => {
+    return userAttr?.userLogoCls || DefaultUserLogoCls
+  }, [userAttr?.userLogoCls])
 
   return (
     <div>
@@ -105,7 +110,7 @@ const CommentView: React.FC<commentViewParams> = ({
         <Spin block loading={loading}>
           <div className={'flex gap-1'}>
             <div
-              className={classNames('flex-shrink-0 ', userAttr.userLogoCls)}
+              className={classNames('flex-shrink-0 ', userLoginCls)}
               style={{height: 'auto'}}
             >
               <div className={'h-1'}/>
@@ -172,7 +177,7 @@ const CommentView: React.FC<commentViewParams> = ({
       </div>
       {!!children && (
         <div className={'flex gap-1 mt-2'}>
-          <div className={classNames(userAttr.userLogoCls, 'flex-shrink-0')}/>
+          <div className={classNames(userLoginCls, 'flex-shrink-0')}/>
           <div className={'flex-grow'}>{children}</div>
         </div>
       )}

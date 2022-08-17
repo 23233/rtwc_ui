@@ -1,6 +1,6 @@
-import React, { CSSProperties, useMemo } from 'react';
+import React, {CSSProperties, useMemo} from 'react';
 import classNames from 'classnames';
-import { Lmg } from '../index';
+import {Lmg} from '../index';
 
 export interface userSimpleViewParams {
   nickName?: string;
@@ -17,20 +17,22 @@ export interface userSimpleViewParams {
   onUserClick?: (from: 'avatar' | 'name') => void;
 }
 
+export const DefaultUserLogoCls = "w-10 h-10"
+
 const UserSimpleView: React.FC<userSimpleViewParams> = ({
-  nickName,
-  avatar,
-  href,
-  className,
-  style,
-  logoSlot,
-  logoRender,
-  nameRender,
-  descExtra,
-  rightExtra,
-  onUserClick,
-  userLogoCls = 'w-10 h-10',
-}) => {
+                                                          nickName,
+                                                          avatar,
+                                                          href,
+                                                          className,
+                                                          style,
+                                                          logoSlot,
+                                                          logoRender,
+                                                          nameRender,
+                                                          descExtra,
+                                                          rightExtra,
+                                                          onUserClick,
+                                                          userLogoCls = DefaultUserLogoCls,
+                                                        }) => {
   const userNickNameRender = useMemo(() => {
     const infoRender = (
       <p
@@ -72,7 +74,7 @@ const UserSimpleView: React.FC<userSimpleViewParams> = ({
               title={nickName}
               onClick={onUserLogoClick}
             >
-              <Lmg src={avatar || ''} useBk />
+              <Lmg src={avatar || ''} useBk/>
             </div>
           )}
           {logoSlot}

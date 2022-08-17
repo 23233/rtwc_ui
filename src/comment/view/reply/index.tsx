@@ -133,7 +133,7 @@ const CommentReplyView: React.FC<commentReplyParams> = ({
             </div>
             {contentExtra}
           </div>
-          <div className={'flex-shrink-0'}>
+          <div className={'flex-shrink-0 px-1'}>
             <div
               title={'喜欢'}
               onClick={() => onLike && onLike()}
