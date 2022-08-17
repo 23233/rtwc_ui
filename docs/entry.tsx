@@ -1,11 +1,14 @@
 import React, {useEffect} from "react";
-import {loadInitStyle} from '@rtwc/ui';
+import {Btn, loadInitStyle} from '@rtwc/ui';
 
 export default () => {
   useEffect(()=>{
     loadInitStyle()
   },[])
   return (
-    <h1>hello world</h1>
+    <div>
+      <h1>导入初始化的style</h1>
+      <Btn info={"导入"} ripple onClick={loadInitStyle} />
+    </div>
   )
 };
