@@ -15,6 +15,7 @@ export interface autoCardAlignGridViewParams {
   data: Array<autoCardItem>
   /** warp类名 */
   className?: string
+  itemCls?: string
   itemNormalCls?: string
   itemBigCls?: string
   titleCls?: string
@@ -30,6 +31,7 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
                                                                         itemBigCls = "h-28 md:h-36 lg:h-40 xl:h-44",
                                                                         titleCls = "text-sm md:text-lg xl:text-2xl truncate font-bold",
                                                                         descCls = "text-xs md:text-sm text-opacity-90 truncate",
+                                                                        itemCls = "w-2/3",
                                                                         onClick,
                                                                       }) => {
 
@@ -47,9 +49,10 @@ const AutoCardAlignGridView: React.FC<autoCardAlignGridViewParams> = ({
         style={bgStyle}
       >
         <div
-          className={'overflow-hidden w-auto'}
+          className={classNames("overflow-hidden ", itemCls)}
         >
-          <div className={"text-black text-center bg-white bg-opacity-20 p-1 md:p-2 rounded  hover:scale-105 hover:bg-opacity-80 transition-all"}>
+          <div
+            className={"text-black text-center bg-white bg-opacity-20 p-1 md:p-2 rounded  hover:scale-105 hover:bg-opacity-80 transition-all"}>
             <p className={classNames(titleCls)}>{d?.title}</p>
             {
               !!d?.desc &&

@@ -55,6 +55,8 @@ export interface userCommentInputParams {
   showLink?: boolean;
   /** 当链接点击删除 */
   onLinkRemove?: (select: inputLinkParams) => Promise<boolean>
+  /** 发送按钮单独显示 */
+  sendBlock?: boolean
   /** 下级元素可以重复自己 */
   children?: React.ReactNode;
   /** 下级元素父级包裹类名 建议与logoCls设置等值 */
@@ -145,6 +147,7 @@ const UserCommentInput: React.FC<userCommentInputParams> = ({
                                                               children,
                                                               childrenCls = 'pl-11 mt-2',
                                                               onSend,
+                                                              sendBlock = false,
                                                             }) => {
   const inputRef = useRef<inputAreaRef>(null);
   const upload = useRef<HTMLInputElement>(null);
@@ -285,7 +288,7 @@ const UserCommentInput: React.FC<userCommentInputParams> = ({
             logoCls,
           )}`}
         >
-          <Lmg src={avatar} useBk alt={'头像'}/>
+          <Lmg src={avatar} useBk alt={'头像'} className={"rounded-full"}/>
         </div>
         <div className={'flex-grow'}>
           <Spin loading={loading} block>
@@ -442,10 +445,16 @@ const UserCommentInput: React.FC<userCommentInputParams> = ({
             {emojiShow && renderEmoji}
           </Spin>
         </div>
-        <div className={'flex-shrink-0'}>
-          <Btn info={'发送'} size={'small'} ripple onClick={onSendClick} loading={loading}/>
-        </div>
+        {
+          !sendBlock && <div className={'flex-shrink-0'}>
+            <Btn info={'发送'} size={'small'} ripple onClick={onSendClick} loading={loading}/>
+          </div>
+        }
+
       </div>
+      {sendBlock && <div className={"py-1"}>
+        <Btn info={'发送'} size={'small'} ripple onClick={onSendClick} loading={loading} block/>
+      </div>}
       {!!children && <div className={classNames(childrenCls)}>{children}</div>}
     </div>
   );

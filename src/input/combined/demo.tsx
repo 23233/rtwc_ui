@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { UserCommentInput } from '@rtwc/ui';
-import { fileUploadResp, commentInputResult } from '@rtwc/ui';
+import React, {useRef, useState} from 'react';
+import {UserCommentInput} from '@rtwc/ui';
+import {fileUploadResp, commentInputResult} from '@rtwc/ui';
 
 const index = (): any => {
   const onSend = (values: commentInputResult) => {
@@ -77,6 +77,34 @@ const index = (): any => {
           ]}
         />
       </UserCommentInput>
+
+      <UserCommentInput
+        avatar={'https://resok.cn/img/photo-1522202176988-66273c2fd55f.jpeg'}
+        onSend={onSend}
+        value={'dsfijwijefijweffghhrhrt'}
+        inputAttr={{
+          showCount: true,
+        }}
+        imgs={[
+          {
+            origin: 'https://resok.cn/img/photo-1522202176988-66273c2fd55f.jpeg',
+          },
+        ]}
+        onFileUpload={onFileUpload}
+        showStar
+        starAttr={{
+          active: 3,
+        }}
+        showLink
+        links={[
+          {
+            title: '日天',
+            href: 'https://www.baidu.com',
+          },
+        ]}
+        sendBlock
+      />
+
     </div>
   );
 };
